@@ -30,6 +30,8 @@ console.log("\n\nTASK 1:");
 
 
 
+
+
 // Task 2: Primitive Types //
 
 // Description: Create a function checkPrimitiveTypes that takes one argument of any type and logs the type of the argument.
@@ -49,6 +51,8 @@ console.log("\n\nTASK 2:");
     checkPrimitiveTypes(null) // using null
     checkPrimitiveTypes(counter) // using object which we initialized in Task 1
 }
+
+
 
 
 
@@ -92,6 +96,8 @@ console.log("\n\nTASK 3:");
 
 
 
+
+
 // Task 4: Loops - For, For...in //
 
 // Description: Create a function logObjectProperties that takes an object and logs its properties and values.
@@ -127,25 +133,103 @@ console.log("\n\nTASK 4:");
 
 
 
+
+
 // Task 5: Hoisting
 // Description: Demonstrate hoisting by writing code snippets that show the difference in behavior between var, let, and const.
 // Requirements:
 // Write code snippets that illustrate variable hoisting for var, let, and const.
 // Explain the output in comments.
 
-// console.log("\n\nTASK 5:");
+console.log("\n\nTASK 5:");
 
-// console.log(a);
-// var a = 5;
-// console.log(a);
+{
+    console.log(a); // logs undefined
+    var a = 5;
+    console.log(a);
 
-// console.log(b);
-// let b = 10;
-// console.log(b);
+    // console.log(b); // logs ReferenceError: Cannot access 'b' before initialization
+    let b = 10;
+    console.log(b);
 
-// console.log(c);
-// const c = 15;
-// console.log(c);
+    // console.log(c); // logs ReferenceError: Cannot access 'b' before initialization
+    const c = 15;
+    console.log(c);
+
+    // It is observed that var is initialized with 'undefined' where as let and const are not 
+    // initialized until their declaration statemen, this is called Temporal Deadzone
+}
+
+
+
+
+
+// Task 6: Variable Scopes //
+
+// Description: Write a function variableScopeTest to demonstrate the difference between global, function, and block scopes.
+// Requirements:
+// Define variables in global, function, and block scopes.
+// Log the variables to demonstrate their accessibility in different scopes.
+
+console.log("\n\nTASK 6:");
+
+
+var a = 'Lost';
+let b = 'Pak';
+const c = 'Cricket';
+
+function variableScopeTest() {
+    var d = 'me';
+    let e = 'him';
+    const f = 'her';
+
+    console.log("Global var (inside function): ", a);
+    console.log("Global let (inside function): ", b);
+    console.log("Global const (inside function): ", c);
+
+    if(true) {
+        var g = 'hello';
+        let h = 'bye';
+        const i = 'idk';     
+
+        console.log("\nGlobal var (inside function and if block): ", a);
+        console.log("Global let (inside function and if block): ", b);
+        console.log("Global const (inside function and if block): ", c);
+        console.log("\nfunction scope var (inside function and if block): ", d);
+        console.log("function scope let (inside function and if block): ", e);
+        console.log("function scope const (inside function and if block): ", f);
+    }
+
+    console.log("\nif block var (inside function but out of if block): ", g);
+    // console.log("if block let: ", h); // ReferenceError: h is not defined
+    // console.log("if block const: ", i); // ReferenceError: i is not defined
+
+}
+variableScopeTest();
+// console.log(d); // ReferenceError: d is not defined
+// console.log(e); // ReferenceError: e is not defined
+// console.log(f); // ReferenceError: f is not defined
+
+// console.log("\nif block var: ", g); // ReferenceError: g is not defined
+// console.log("if block let: ", h); // ReferenceError: h is not defined
+// console.log("if block const: ", i); // ReferenceError: i is not defined
+
+if(true) {
+    var j = 5;
+    let k = 10;
+    const l = 15;
+}
+
+console.log("\nif block var: ", j);
+// console.log("if block let: ", k); ReferenceError: k is not defined
+// console.log("if block const: ", l); ReferenceError: l is not defined
+
+// a,b,c were defined outside any function or block hence they have global scope and can be accessed anywhere and we can also not redeclare the let 'b' or const 'c'.
+// Since d,e,f were defined inside the function scope hence they can not be accessed anywhere else but that function itself
+// g,h,i being inside a block within the function limit the scope of let and const to just that block however var can be accessed outside the block aswell however not outside the function scope
+// j,k,l are defined inside the if block, only var can be accessed outside the block scope where as let and const throw a reference error
+
+
 
 
 
@@ -182,6 +266,8 @@ console.log("\n\nTASK 7:");
 
 
 
+
+
 // Task 8: Functions //
 
 // Description: Write a function calculateArea that takes the radius of a circle as an argument and returns the area.
@@ -201,6 +287,7 @@ console.log("\n\nTASK 8:");
     var area =  calculateArea(radius);
     console.log(`Area of a Circle with Radius: ${radius} is ${area.toFixed(2)}`); // Logs the area of the circle, upto 2 Decimal Places, on the given Radius
 }
+
 
 
 
@@ -240,6 +327,8 @@ console.log("\n\nTASK 9:");
     // Shallow copy copies by reference hence we can expect changes made in the original object or it's shallow copy to be reflected in the other 
     // It is observed that changes are only reflected in the nested object properties, primitive properties remain the same as they are copied by value
 }
+
+
 
 
 
